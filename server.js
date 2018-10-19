@@ -17,6 +17,9 @@ app.use(session({
 app.get('/', (req, res) => {
     res.render('index.ejs');
 })
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
+app.use(morgan('short'));
 
 
 app.use('/auth', authController);
