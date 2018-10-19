@@ -11,5 +11,19 @@ router.get('/', async (req, res) => {
     });    
 })
 
+router.post('/register', async (req, res) => {
+    console.log(req.body)
+    try {
+        console.log(req.body)
+        const password = req.body.password;
+        console.log(password);
+        const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+        console.log(passwordHash);
+        res.send(passwordHash);
+    } catch (err) {
+        res.send(err);
+    }
+})
+
 
 module.exports = router;
