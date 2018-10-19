@@ -8,11 +8,12 @@
         <style>
             small{
                 color: red;
+                background-color: rgba(255,0,0,.2)
             }
         </style>
     </head>
     <body>
-        <h1>Register</h1> <small><%=message%></small>
+        <h1>Register</h1>
         <form action="/auth/register" method="POST">
             Username: <input type="text" name="username"> <br>
             Password: <input type="password" name="password"> <br>

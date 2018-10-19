@@ -35,11 +35,11 @@ router.post('/login', async (req, res) => {
                 req.session.loggedIn = true;
                 res.render('index.ejs');
             } else {
-                req.session.message = "wrong username or password"
+                req.session.message = "username or password is incorrect"
                 res.redirect('/auth/login')
             }
         } else {
-            req.session.message = "wrong username or password"
+            req.session.message = "username or password is incorrect"
             res.redirect('/auth/login')
         }
         res.send('working'); 
