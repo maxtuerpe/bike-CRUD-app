@@ -5,25 +5,57 @@ const bcrypt  = require('bcryptjs');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/login', async (req, res) => {
     res.render('auth/login.ejs', {
         message: req.session.message
     });    
 })
 
 router.post('/register', async (req, res) => {
-    console.log(req.body)
     try {
-        console.log(req.body)
         const password = req.body.password;
-        console.log(password);
         const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-        console.log(passwordHash);
-        res.send(passwordHash);
+        const newUserData = {
+            username: req.body.username,
+            password: passwordHash,
+        }
+        await User.create(newUserData);
+        req.session.loggedIn = true;
+        req.session.message = '';
+        res.render('index.ejs');
     } catch (err) {
         res.send(err);
     }
 })
+router.post('/login', async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.body.username})
+        if (user){
+            if(bcrypt.compareSync(req.body.password, user.password)){
+                req.session.loggedIn = true;
+                res.render('index.ejs');
+            } else {
+                req.session.message = "wrong username or password"
+                res.redirect('/auth/login')
+            }
+        } else {
+            req.session.message = "wrong username or password"
+            res.redirect('/auth/login')
+        }
+        res.send('working'); 
+    } catch (err) {
+        res.send(err);
+    }
+})
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err){
+            res.send(err);
+        } else {
+            res.render('auth/logout.ejs')
+        }
+    });
+});
 
 
 module.exports = router;
