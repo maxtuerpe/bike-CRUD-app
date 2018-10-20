@@ -6,6 +6,8 @@ const session        = require('express-session');
 const morgan         = require('morgan');
 // CONTROLLERS
 const authController = require('./controllers/auth');
+const postsController = require('./controllers/posts');
+const usersController = require('./controllers/users');
 
 require('./db/db');
 
@@ -23,6 +25,8 @@ app.use(morgan('short'));
 
 
 app.use('/auth', authController);
+app.use('/posts', postsController);
+app.use('/users', usersController);
 
 
 

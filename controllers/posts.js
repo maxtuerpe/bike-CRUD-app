@@ -5,6 +5,7 @@ const User = require('../models/users')
 
 
 router.get('/', (req, res) => {
+    console.log(req.session, '')
     Post.find({}, (err, foundPosts) => {
         res.render('posts/index.ejs', {
             posts: foundPosts
@@ -13,10 +14,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-    User.find({}, (err, allUsers) => {
-        res.render('posts/new.ejs', {    
-        });
-    });
+    console.log(req.session, ' in new route');
+    res.render('posts/new.ejs');
 });
 
 
