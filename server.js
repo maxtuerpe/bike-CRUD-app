@@ -11,6 +11,8 @@ const usersController = require('./controllers/users');
 
 require('./db/db');
 
+app.use(express.static('public'));
+
 app.use(session({
     secret: 'This is some random secret string',
     resave: false,
