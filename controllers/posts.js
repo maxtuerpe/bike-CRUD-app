@@ -18,15 +18,9 @@ router.get('/new', (req, res) => {
     res.render('posts/new.ejs');
 });
 
-router.post('/', (req, res) => {
-    User.findById(req.body.userId, (err,foundUser) => {
-        Post.create(req.body, (err, createdPost) => {
-            foundUser.posts.push(createdPost);
-            foundUser.save((err, data) => {
-                res.redirect('/posts')
-            });
-        });
-    })
+router.post("/index", (req, res) => {
+    console.log('xxxxxxxx',req.files);
+    // var img = 
 });
 
 

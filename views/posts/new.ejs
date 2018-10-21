@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <h1>Choose Photos for Upload</h1>
-    <input type="file" id="input" accept="image/*" multiple onchange="handleFiles(this.files)">
+    <form action="/posts/index" enctype=multipart/form-data method="POST">
+        img: <input name="image" type="file" id="input" accept="image/*"><br>
 
-    <script>
+    <!-- img: <input name="image" type="file" id="input" accept="image/*" onchange="handleFiles(this.files)"><br> -->
+
+    <!-- <script>
         var inputElement = document.getElementById("input");
         inputElement.addEventListener("change", handleFiles, false);
         function handleFiles(files) {
@@ -34,7 +37,9 @@
                     console.log(files[i].name)
                 }
         }
-    </script>
+    </script> -->
+     <input type="submit">   
 
+    </form>
 </body>
 </html>
