@@ -10,6 +10,9 @@ router.get('/login', async (req, res) => {
         message: req.session.message
     });    
 })
+router.get('/register', async (req, res) => {
+    res.render('users/new.ejs',);    
+})
 
 router.post('/register', async (req, res) => {
     try {
@@ -22,7 +25,7 @@ router.post('/register', async (req, res) => {
         await User.create(newUserData);
         req.session.loggedIn = true;
         req.session.message = '';
-        res.render('index.ejs');
+        res.redirect('/');
     } catch (err) {
         res.send(err);
     }
@@ -33,7 +36,7 @@ router.post('/login', async (req, res) => {
         if (user){
             if(bcrypt.compareSync(req.body.password, user.password)){
                 req.session.loggedIn = true;
-                res.render('index.ejs');
+                res.redirect('/');
             } else {
                 req.session.message = "username or password is incorrect"
                 res.redirect('/auth/login')
@@ -41,8 +44,7 @@ router.post('/login', async (req, res) => {
         } else {
             req.session.message = "username or password is incorrect"
             res.redirect('/auth/login')
-        }
-        res.send('working'); 
+        } 
     } catch (err) {
         res.send(err);
     }

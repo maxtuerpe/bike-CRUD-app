@@ -18,6 +18,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use((req, res, next)=>{
+    if(req.session.loggedIn){
+        res.locals.loggedIn = true;
+    } else {
+        res.locals.loggedIn = false;
+    }
+    next();
+})
 app.get('/', (req, res) => {
     res.render('index.ejs');
 })
