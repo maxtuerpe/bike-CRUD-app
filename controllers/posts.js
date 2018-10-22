@@ -4,29 +4,27 @@ const Post = require('../models/posts')
 const User = require('../models/users')
 
 
-router.get('/', (req, res) => {
-    console.log(req.session, '')
-    Post.find({}, (err, foundPosts) => {
-        res.render('posts/index.ejs', {
-            posts: foundPosts
-        });
-    });
+router.get('/', async (req, res) => {
+    try {
+        const posts = await Post.find({});
+        res.render('posts/index.ejs', {posts});
+    } catch(err) {
+        res.send(err);
+    }
 });
 
 router.get('/new', (req, res) => {
-    console.log(req.session, ' in new route');
     res.render('posts/new.ejs');
 });
 
-router.post('/', (req, res) => {
-    User.findById(req.body.userId, (err,foundUser) => {
-        Post.create(req.body, (err, createdPost) => {
-            foundUser.posts.push(createdPost);
-            foundUser.save((err, data) => {
-                res.redirect('/posts')
-            });
-        });
-    })
+router.post('/', async (req, res) => {
+    try {
+        console.log(document)
+        await Post.create(req.body);
+        res.redirect('/posts')
+    } catch(err){
+        res.send(err);
+    }
 });
 
 

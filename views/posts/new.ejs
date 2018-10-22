@@ -8,23 +8,30 @@
     <title>Document</title>
 </head>
 <body>
+    <% include ../partials/nav.ejs %>
     <h1>Choose Photos for Upload</h1>
-    <input type="file" id="input" accept="image/*" multiple onchange="handleFiles(this.files)">
+    <input type="file" id="input" accept="image/*" multiple onchange="handleFiles(this.files), console.log(this.files)">
 
     <script>
-        var inputElement = document.getElementById("input");
+        const inputElement = document.getElementById("input");
         inputElement.addEventListener("change", handleFiles, false);
         function handleFiles(files) {
             for (let i = 0; i < files.length; i++) {
                 let file = files[i];
                 
-                let img = document.createElement("img");
-                img.classList.add("obj");
+                let img = document.createElement("input");
+                img.type = "image";
                 img.file = file;
-                document.body.appendChild(img);
+                img.name = "img";
+                document.getElementById("new-post").appendChild(img);
 
                 let reader = new FileReader();
-                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+                reader.onload = (function(aImg) {
+                    return function(e) {
+                        aImg.src = e.target.result;
+                        aImg.value = e.target.result;
+                    }; 
+                })(img);
                 reader.readAsDataURL(file);
             };
 
@@ -35,6 +42,12 @@
                 }
         }
     </script>
+    <form action="/posts" method="POST" id="new-post">
+    
+
+        <input type="submit" value="post">
+    </form>
+
 
 </body>
 </html>
