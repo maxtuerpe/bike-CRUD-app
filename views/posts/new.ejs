@@ -4,47 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     <% include ../partials/nav.ejs %>
     <h1>Choose Photos for Upload</h1>
-    <input type="file" id="input" accept="image/*" multiple onchange="handleFiles(this.files), console.log(this.files)">
+    <input type="file" id="input" accept="image/*" onchange="handleFiles(this.files)">
+
 
     <script>
         const inputElement = document.getElementById("input");
         inputElement.addEventListener("change", handleFiles, false);
-        function handleFiles(files) {
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                
-                let img = document.createElement("input");
-                img.type = "image";
-                img.file = file;
-                img.name = "img";
-                document.getElementById("new-post").appendChild(img);
+        function handleFiles(){
+            const userUpload = this.files[0];
+            console.log(userUpload);
+            const img = document.createElement("img");
+            img.file = userUpload;
+            document.body.appendChild(img);
+            const reader = new FileReader();
+            reader.onload = function (e){
+                img.src = e.target.result;
+                const formInput = document.getElementById("userUpload");
+                formInput.value = e.target.result
 
-                let reader = new FileReader();
-                reader.onload = (function(aImg) {
-                    return function(e) {
-                        aImg.src = e.target.result;
-                        aImg.value = e.target.result;
-                    }; 
-                })(img);
-                reader.readAsDataURL(file);
-            };
-
-                let numFiles = files.length;
-                for (let i = 0; i < numFiles; i ++) {
-                    let file = files[i];
-                    console.log(files[i].name)
-                }
-        }
+            }; 
+            
+            reader.readAsDataURL(userUpload);
+        };
     </script>
     <form action="/posts" method="POST" id="new-post">
     
-
+        <input id="userUpload" type="hidden" name="img" >
         <input type="submit" value="post">
     </form>
 
