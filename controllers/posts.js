@@ -19,7 +19,7 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        console.log(document)
+        console.log(req.body);
         await Post.create(req.body);
         res.redirect('/posts')
     } catch(err){
