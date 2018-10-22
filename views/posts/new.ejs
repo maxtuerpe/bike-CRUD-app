@@ -10,14 +10,11 @@
     <% include ../partials/nav.ejs %>
     <h1>Choose Photos for Upload</h1>
     <input type="file" id="input" accept="image/*" onchange="handleFiles(this.files)">
-
-
     <script>
         const inputElement = document.getElementById("input");
         inputElement.addEventListener("change", handleFiles, false);
         function handleFiles(){
             const userUpload = this.files[0];
-            console.log(userUpload);
             const img = document.createElement("img");
             img.file = userUpload;
             document.body.appendChild(img);
@@ -26,18 +23,13 @@
                 img.src = e.target.result;
                 const formInput = document.getElementById("userUpload");
                 formInput.value = e.target.result
-
             }; 
-            
             reader.readAsDataURL(userUpload);
         };
     </script>
     <form action="/posts" method="POST" id="new-post">
-    
         <input id="userUpload" type="hidden" name="img" >
         <input type="submit" value="post">
     </form>
-
-
 </body>
 </html>
