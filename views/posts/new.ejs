@@ -31,7 +31,8 @@
     </script>
 
     <form action="/posts" method="POST" id="new-post">
-        <input id="userUpload" type="hidden" name="img" >
+        <input id="userUpload" type="hidden" name="img">
+        <input type="hidden" name="user" value="<%=userId%>">
         <input type= textarea name="caption"></textarea>
         <input type="submit" value="Post">
         <input type="button" value="Delete" onClick="history.go(0)">

@@ -21,9 +21,9 @@
     <h1>Edit Your Profile</h1>
     edit profile picture: <input type="file" id="input" accept="image/*" onchange="handleFiles(this.files)"> 
     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
-        <img  id="profile-pic" src="http://torrentcorp.com/wp-content/uploads/Generic-profile-pic.gif" alt=""><br>
-        <input id="userUpload" type="hidden" name="profilePic">
-        <input  type="textbox" name="bio">
+        <img  id="profile-pic" src="<%=user.profilePic%>" alt=""><br>
+        <input id="userUpload" type="hidden" name="profilePic" value="<%=user.profilePic%>">
+        Bio: <input  type="textbox" name="bio" value="<%=user.bio%>">
         <input type="submit" value="confirm changes">
     </form>
     <script>
