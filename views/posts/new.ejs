@@ -29,9 +29,14 @@
             reader.readAsDataURL(userUpload);
         };
     </script>
+
     <form action="/posts" method="POST" id="new-post">
         <input id="userUpload" type="hidden" name="img" >
-        <input type="submit" value="post">
+        <input type= textarea name="caption"></textarea>
+        <input type="submit" value="Post">
+        <input type="button" value="Delete" onClick="history.go(0)">
+        
     </form>
+    
 </body>
 </html>
