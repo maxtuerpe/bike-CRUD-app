@@ -27,6 +27,14 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:id', (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        res.render('posts/show.ejs', {
+        posts: foundPost
+        });
+    });
+});
+
 
 
 
