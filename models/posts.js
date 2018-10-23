@@ -8,3 +8,8 @@ const postsSchema = new mongoose.Schema ({
 })
 
 module.exports = mongoose.model('Post', postsSchema);
+
+
+
+
+
