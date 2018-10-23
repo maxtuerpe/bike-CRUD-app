@@ -23,6 +23,8 @@ app.use(session({
 app.use((req, res, next)=>{
     if(req.session.loggedIn){
         res.locals.loggedIn = true;
+        console.log(req.session)
+        res.locals.userId = req.session.userId
     } else {
         res.locals.loggedIn = false;
     }
