@@ -24,7 +24,22 @@ router.get('/:id', async (req, res) => {
         res.send(err);
     }
 })
-
+router.get('/:id/edit', async(req, res) => {
+    try{
+        const user = await User.findById(req.params.id)
+        res.render('users/edit.ejs', {user})
+    } catch(err){
+        res.send(err)
+    }
+})
+router.put('/:id', async (req, res) => {
+    try{
+        const user = await User.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/users/${req.params.id}`)
+    }catch(err){
+        res.send(err);
+    }
+})
 
 
 
