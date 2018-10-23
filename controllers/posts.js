@@ -6,7 +6,7 @@ const User = require('../models/users')
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find({});
+        const posts = await Post.find({}).populate("user");
         res.render('posts/index.ejs', {posts});
     } catch(err) {
         res.send(err);
@@ -18,22 +18,24 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    
     try {
-        console.log(req.body);
-        await Post.create(req.body);
+        const post = await Post.create(req.body);
+        const user = await User.findById(req.body.user);
+        user.posts.push(post._id)
+        await user.save();
         res.redirect('/posts')
     } catch(err){
         res.send(err);
     }
 });
 
-router.get('/:id', (req, res) => {
-    Post.findById(req.params.id, (err, foundPost) => {
-        res.render('posts/show.ejs', {
-        posts: foundPost
-        });
-    });
+router.get('/:id', async (req, res) => {
+    try {
+        post = await Post.findById(req.params.id).populate("user");
+        res.render('posts/show.ejs', {post});
+    } catch(err) {
+        res.send(err);
+    }
 });
 
 

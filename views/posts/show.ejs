@@ -10,8 +10,9 @@
 <body>
     <% include ../partials/nav.ejs %>
     <main>
-        <h2><%=posts.caption%></h2>
-        <img src="<%=posts.img%>" style="width: 500px"></a>
+        <h2><%=post.caption%></h2>
+        <a href="/users/<%=post.user._id%>"><h2><%=post.user.username%></h2></a>
+        <img src="<%=post.img%>" style="width: 90%"></a>
 
 
     </main>

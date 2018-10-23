@@ -19,6 +19,7 @@
                             <div class="thumbnail">
                                 <a href="/posts/<%=posts[i]._id%>"><img src="<%=posts[i].img%>"></a>
                                 <div class="caption">
+                                        <a href="/users/<%=posts[i].user._id%>"><h3><%=posts[i].user.username%></h3></a>
                                         <h3><%=posts[i].caption%></h3>
                                 </div>
                             </div>
