@@ -1,0 +1,17 @@
+<script>
+    const inputElement = document.getElementById("input");
+    inputElement.addEventListener("change", handleFiles, false);
+    function handleFiles(){
+        const userUpload = this.files[0];
+        const img = document.createElement("img");
+        img.file = userUpload;
+        document.body.appendChild(img);
+        const reader = new FileReader();
+        reader.onload = function (e){
+            img.src = e.target.result;
+            const formInput = document.getElementById("userUpload");
+            formInput.value = e.target.result
+        }; 
+        reader.readAsDataURL(userUpload);
+    };
+</script>
