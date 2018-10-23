@@ -5,7 +5,7 @@ const usersSchema = new mongoose.Schema ({
     password: {type: String, required: true},
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
     bio: String,
-    profilePic: String,
+    profilePic: {type: String, default: "http://torrentcorp.com/wp-content/uploads/Generic-profile-pic.gif"},
 
 })
 

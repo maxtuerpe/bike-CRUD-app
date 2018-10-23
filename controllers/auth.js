@@ -23,7 +23,6 @@ router.post('/register', async (req, res) => {
             password: passwordHash,
         }
         const user = await User.create(newUserData);
-        console.log(user)
         req.session.loggedIn = true;
         req.session.userId = user._id
         req.session.message = '';
@@ -39,7 +38,6 @@ router.post('/login', async (req, res) => {
             if(bcrypt.compareSync(req.body.password, user.password)){
                 req.session.loggedIn = true;
                 req.session.userId = user._id
-                console.log(req.session)
                 res.redirect('/');
             } else {
                 req.session.message = "username or password is incorrect"

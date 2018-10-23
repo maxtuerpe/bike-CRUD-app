@@ -6,16 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Document</title>
+    <style>
+    #profile-pic{
+        height: 10em !important;
+        width: 10em !important;
+        border-style: solid;
+        object-fit: cover;
+    }
+    </style>
 </head>
 <body>
+    
     <% include ../partials/nav.ejs %>
     <h1>Edit Your Profile</h1>
+    edit profile picture: <input type="file" id="input" accept="image/*" onchange="handleFiles(this.files)"> 
     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
-        <p><%=user.username%></p><br>
-        <p><%=userId%></p>
-
+        <img  id="profile-pic" src="http://torrentcorp.com/wp-content/uploads/Generic-profile-pic.gif" alt=""><br>
+        <input id="userUpload" type="hidden" name="profilePic">
+        <input  type="textbox" name="bio">
         <input type="submit" value="confirm changes">
     </form>
-    
+    <script>
+        const inputElement = document.getElementById("input");
+        inputElement.addEventListener("change", handleFiles, false);
+        function handleFiles(){
+            const userUpload = this.files[0];
+            const img = document.createElement("img");
+            img.file = userUpload;
+            const reader = new FileReader();
+            reader.onload = function (e){
+                const profilePic = document.getElementById("profile-pic")
+                profilePic.src = e.target.result
+                img.src = e.target.result;
+                const formInput = document.getElementById("userUpload");
+                formInput.value = e.target.result
+            }; 
+            reader.readAsDataURL(userUpload);
+        };
+    </script>
 </body>
 </html>
