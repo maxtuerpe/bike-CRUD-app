@@ -18,8 +18,10 @@ router.get('/new', (req, res) => {
 })
 router.get('/:id', async (req, res) => {
     try{
+        
         const user = await User.findById(req.params.id).populate('posts');
         res.render('users/show.ejs', {user});
+        
     } catch(err){
         res.send(err);
     }
