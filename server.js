@@ -4,7 +4,6 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const morgan         = require('morgan');
-const requireLoggin  = require('./middleware/requireLoggin');
 // CONTROLLERS
 const authController = require('./controllers/auth');
 const postsController = require('./controllers/posts');
@@ -22,9 +21,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use((req, res, next) => {
-    requireLoggin();
-});
 app.use((req, res, next)=>{
     if(req.session.loggedIn){
         res.locals.loggedIn = true;
@@ -32,7 +28,14 @@ app.use((req, res, next)=>{
     } else {
         res.locals.loggedIn = false;
         res.locals.userId = false;
+    } 
+    if(req.session.message){
+        res.locals.message = req.session.message
+    } else {
+        
+        res.locals.message = '';
     }
+    req.session.message = '';
     next();
 })
 app.get('/', (req, res) => {
