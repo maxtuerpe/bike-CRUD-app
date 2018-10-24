@@ -7,7 +7,7 @@ const bcrypt  = require('bcryptjs');
 
 router.get('/login', async (req, res) => {
     res.render('auth/login.ejs', {
-        message: req.session.message
+        message: res.locals.message
     });    
 })
 router.get('/register', async (req, res) => {
