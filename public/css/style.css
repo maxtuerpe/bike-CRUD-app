@@ -1,3 +1,16 @@
+.jumbotron {
+    height:100px;
+    overflow-y:scroll;
+    width:100%;
+    border: 5px;
+    border-color: black;
+}
+
+.jumbotron p {
+    font-size: 20px;
+    text-align: center
+}
+
 .nav-bar {
     display: flex;
     justify-content: center;
