@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Document</title>
+    <style>
+        #profile-pic{
+            height: 5em ;
+            width: 5em ;
+            border-style: solid;
+            object-fit: cover;
+        }
+    </style>
+     
 </head>
 <body>
     <% include ../partials/nav.ejs %>
@@ -14,14 +23,19 @@
         <h2 align="center"><%=post.caption%></h2>
         <a href="/users/<%=post.user._id%>"><h2>User-<%=post.user.username%></h2></a>
         <img src="<%=post.img%>" style="width: 90%" class="center"></a>
-    </main>
+
+        <% for(let i = 0; i < post.comments.length; i++){%>
+            <p><%= post.comments[i].comment%></p>
+            <p><%= post.comments[i].user.username%></p>
+        <%}%>
     
-    <form action="/posts" method="POST" id="new-comment">
-        <input type="hidden" name="user" value="<%=userId%>">
-        <input type=textarea placeholder= "Enter Comments Here..." name="comment"></textarea>
-        <input type="submit" value="Post">
+    
+        <form action="/posts/<%=post._id%>" method="POST" id="new-comment">
+            <input type="hidden" name="user" value="<%=userId%>">
+            <input type=textarea placeholder= "Enter Comments Here..." name="comment"></textarea>
+            <input type="submit" value="Post">
 
-    </form>
-
+        </form>
+    </main>
 </body>
 </html>

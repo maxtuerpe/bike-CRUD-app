@@ -26,11 +26,12 @@ app.use((req, res, next)=>{
         res.locals.userId = req.session.userId
     } else {
         res.locals.loggedIn = false;
+        res.locals.userId = false;
     }
     next();
 })
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.redirect('/posts');
 })
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));

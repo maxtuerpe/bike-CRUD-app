@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/posts')
 const User = require('../models/users')
+const Comment = require('../models/comments')
 
 
 router.get('/', async (req, res) => {
@@ -31,12 +32,29 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        post = await Post.findById(req.params.id).populate("user");
+        post = await Post.findById(req.params.id).populate("user").populate({ 
+            path: "comments",
+            populate: {
+                path: "user",
+                model: "User"
+            }
+        });
         res.render('posts/show.ejs', {post});
     } catch(err) {
         res.send(err);
     }
 });
+router.post('/:id', async (req, res) => {
+    try{
+        const comment = await Comment.create(req.body);
+        const post = await Post.findById(req.params.id);
+        post.comments.push(comment._id);
+        await post.save();
+        res.redirect(`/posts/${req.params.id}`);
+    }catch(err){
+        res.send(err);
+    }
+})
 
 router.get('/:id/edit', async (req, res) => {
     try {
