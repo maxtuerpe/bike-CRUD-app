@@ -1,6 +1,16 @@
+.nav-bar {
+    display: flex;
+    justify-content: center;
+}
 
+form {
+    margin: 0 auto;
+    width:300px
+}
 
-
+ul {
+    list-style-type: none;
+}
 
 img {
     
@@ -11,21 +21,29 @@ img {
     margin: 10px;
     box-shadow: 8px 8px gray;
     border-radius: 5px;
-    cursor: pointer;
-    transition: 0.5s
+    
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
-.obj:hover {opacity: 0.7}
 
-h1 {
+h1, h2, h3 {
     color: Blue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .btn {
-    color: black
+    color: white
 }
 
 #new-post {
     align-content: center
+}
+
+#input {
+    align-items: center
 }

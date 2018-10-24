@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
     <% include ../partials/nav.ejs %>
-    <h1>users index page</h1>
+    <h1 align="center">Bike Photo Users</h1>
     <ul>
     <% for(let i = 0; i < users.length; i++){%>
-        <li><a href="/users/<%=users[i]._id%>"><%=users[i].username%></a></li>
+        <li><h2 align="center"><a href="/users/<%=users[i]._id%>"><%=users[i].username%></a></h2></li>
     <%}%>  
     </ul>
 </body>
