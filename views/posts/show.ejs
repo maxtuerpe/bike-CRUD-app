@@ -6,12 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Document</title>
+    <style>
+        #profile-pic{
+            height: 5em ;
+            width: 5em ;
+            border-style: solid;
+            object-fit: cover;
+        }
+    </style>
+     
 </head>
 <body>
     <% include ../partials/nav.ejs %>
     <main>
         <h2><%=post.caption%></h2>
-        <a href="/users/<%=post.user._id%>"><h2><%=post.user.username%></h2></a>
+        <img id="profile-pic" src="<%=post.user.profilePic%>" alt=""><a href="/users/<%=post.user._id%>"><h2><%=post.user.username%></h2></a>
         <img src="<%=post.img%>" style="width: 90%"></a>
 
 

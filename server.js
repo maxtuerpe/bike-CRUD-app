@@ -30,7 +30,7 @@ app.use((req, res, next)=>{
     next();
 })
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.redirect('/posts');
 })
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
