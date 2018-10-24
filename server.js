@@ -16,12 +16,15 @@ app.use(express.static('public'));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 
-app.use(requireLoggin(req, res, next))
+
 app.use(session({
     secret: 'This is some random secret string',
     resave: false,
     saveUninitialized: false
 }));
+app.use((req, res, next) => {
+    requireLoggin();
+});
 app.use((req, res, next)=>{
     if(req.session.loggedIn){
         res.locals.loggedIn = true;
