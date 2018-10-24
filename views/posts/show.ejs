@@ -17,6 +17,10 @@
         p{
             display: inline-block;
         }
+        small{
+            color: red;
+            background-color: rgba(255,0,0,.2)
+        }
     </style>
      
 </head>
@@ -27,7 +31,7 @@
         <a href="/users/<%=post.user._id%>"><h2>User-<%=post.user.username%></h2></a>
         <img src="<%=post.img%>" style="width: 50%" class="center"></a>
 
-       
+    
         
         <div class="jumbotron jumbotron-fluid">
                 <div class="container">
@@ -39,6 +43,7 @@
               </div>
         <form action="/posts/<%=post._id%>" method="POST" id="new-comment">
             <input type="hidden" name="user" value="<%=userId%>">
+            <small><%=message%></small><br>
             <input type=textarea placeholder= "Enter Comments Here..." name="comment"></textarea>
             <input type="submit" value="Post">
         

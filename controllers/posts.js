@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require('../models/posts')
 const User = require('../models/users')
 const Comment = require('../models/comments')
-
+const requireLoggin  = require('../middleware/requireLoggin');
 
 router.get('/', async (req, res) => {
     try {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', requireLoggin, (req, res) => {
     res.render('posts/new.ejs');
 });
 
@@ -38,12 +38,12 @@ router.get('/:id', async (req, res) => {
                 path: "user",
             }
         });
-        res.render('posts/show.ejs', {post});
+        res.render('posts/show.ejs', {post, message: res.locals.message});
     } catch(err) {
         res.send(err);
     }
 });
-router.post('/:id', async (req, res) => {
+router.post('/:id', requireLoggin, async (req, res) => {
     try{
         const comment = await Comment.create(req.body);
         const post = await Post.findById(req.params.id);

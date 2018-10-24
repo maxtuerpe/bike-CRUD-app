@@ -4,7 +4,6 @@ const bodyParser     = require('body-parser');
 const methodOverride = require('method-override');
 const session        = require('express-session');
 const morgan         = require('morgan');
-const requireLoggin  = require('./middleware/requireLoggin');
 // CONTROLLERS
 const authController = require('./controllers/auth');
 const postsController = require('./controllers/posts');
@@ -16,7 +15,7 @@ app.use(express.static('public'));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 
-app.use(requireLoggin(req, res, next))
+
 app.use(session({
     secret: 'This is some random secret string',
     resave: false,
@@ -29,7 +28,14 @@ app.use((req, res, next)=>{
     } else {
         res.locals.loggedIn = false;
         res.locals.userId = false;
+    } 
+    if(req.session.message){
+        res.locals.message = req.session.message
+    } else {
+        
+        res.locals.message = '';
     }
+    req.session.message = '';
     next();
 })
 app.get('/', (req, res) => {
