@@ -36,7 +36,6 @@ router.get('/:id', async (req, res) => {
             path: "comments",
             populate: {
                 path: "user",
-                model: "User"
             }
         });
         res.render('posts/show.ejs', {post});

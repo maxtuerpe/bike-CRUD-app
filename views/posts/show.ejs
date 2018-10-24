@@ -14,6 +14,9 @@
             border-style: solid;
             object-fit: cover;
         }
+        p{
+            display: inline-block;
+        }
     </style>
      
 </head>
@@ -30,7 +33,7 @@
                 <div class="container">
                         <% for(let i = 0; i < post.comments.length; i++){%>
                             <p><%= post.comments[i].comment%></p>
-                            <p><%= post.comments[i].user.username%></p>
+                            <p>-<a href="/users/<%=post.comments[i].user._id%>"><%= post.comments[i].user.username%></a></p><br>
                         <%}%>
                 </div>
               </div>
