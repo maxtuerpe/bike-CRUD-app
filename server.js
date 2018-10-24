@@ -26,6 +26,7 @@ app.use((req, res, next)=>{
         res.locals.userId = req.session.userId
     } else {
         res.locals.loggedIn = false;
+        res.locals.userId = false;
     }
     next();
 })
