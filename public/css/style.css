@@ -1,15 +1,25 @@
 .jumbotron {
-    height:100px;
+    height:500px;
     overflow-y:scroll;
-    width:100%;
+    width:50%;
     border: 5px;
     border-color: black;
+    align: center
 }
 
 .jumbotron p {
     font-size: 20px;
     text-align: center
 }
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }
+  
 
 .nav-bar {
     display: flex;
