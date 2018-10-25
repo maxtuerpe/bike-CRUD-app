@@ -8,14 +8,10 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Document</title>
-    <style>
-        small{
-            color: red;
-            background-color: rgba(255,0,0,.2)
-        }
-    </style>
+    
 </head>
 <body>
+
         <% include ../partials/nav.ejs %>
         <div class="container">
                 
@@ -27,13 +23,12 @@
                             <div class="thumbnail">
                                 <div class="post-head">
                                     <img id="profile-pic" src="<%=posts[i].user.profilePic%>" alt="">
-                                    <a id="user-name" href="/users/<%=posts[i].user._id%>"><h3><%=posts[i].user.username%></h3></a>
+                                    <a href="/users/<%=posts[i].user._id%>"><h3 id="username"><%=posts[i].user.username%></h3></a>
                                     
                                 </div>
                                 <a href="/posts/<%=posts[i]._id%>"><img id="post-pic" src="<%=posts[i].img%>"></a>
                                 <div class="caption">
-                                        
-                                        <h3><%=posts[i].caption%></h3>
+                                    <h3><%=posts[i].caption%></h3>
                                 </div>
                             </div>
                         </div>

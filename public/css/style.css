@@ -4,7 +4,8 @@
     width:50%;
     border: 5px;
     border-color: black;
-    align: center
+    align: center;
+    margin-bottom: none;
 }
 .title{
     font-family: 'Satisfy', cursive;
@@ -21,7 +22,7 @@
 }
 body{
     background-image: url('../images/bikechain.png');
-    background-size: 50%;
+    background-size: 75%;
 }
 
 .vertical-center {
@@ -100,11 +101,32 @@ h1, h2, h3 {
     object-fit: cover;
 }
 .thumbnail{
-    background-color: rgba(255, 255, 255, 0.514);
-
+    background-color: rgba(255, 255, 255, 0.472);
+    height: 30em;
+    overflow-y: scroll;
+}
+#user-info{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 40%;
+    margin: auto;
+}
+#user-info *{
+    display: inline-block;
+}
+#user-info .right{
+    float: right;
+}
+#user-info .right *{
+    float: right;
 }
 .caption {
     padding: 0;
+    background-color: white;
+}
+.caption * {
+    color: black;
+    text-shadow: none;
 }
 
 .new-post {
@@ -113,14 +135,26 @@ h1, h2, h3 {
 }
 
 .post-head * {
-    display: inline-block
+    display: inline-block;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .post-head #profile-pic {
     height: 3em;
-    width: 3em
+    width: 3em;
+    
 }
 
-#user-name {
-    font-size: 40px
+#username {
+    font-size: 3em;
+    margin-bottom: .5em;
+    color: rgb(3, 90, 131);
+    text-shadow: none;  
+}
+small{
+    color: red;
+    background-color: rgba(255,0,0,.2);
+    margin: auto;
+}
+#new-comment {
 }
