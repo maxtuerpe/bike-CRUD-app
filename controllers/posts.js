@@ -64,18 +64,31 @@ router.get('/:id/edit', async (req, res) => {
     }
 });
 
-router.delete('/:id', (req, res) => {
-    Post.findByIdAndDelete(req.params.id, (err, deletedPost)=>{
+router.put('/:id', async (req, res) => {
+    try{
+        const post = await Post.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/posts/${req.params.id}`)
+    } catch(err) {
+        res.send(err);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        for(let i = 0; i < post.comments.length; i++) {
+            await Comment.findByIdAndDelete(posts.comments[i]);
+        } 
+        await post.remove();
         res.redirect('/posts')
+    } catch(err) {
+        res.send(err);
+    }
+});
+    
 
-    })
-})
 
-// router.get('/:id/edit', (req, res) => {
-//     Post.findById(req.params.id, (err, foundPost) => {
-//         res.render('posts/edit.ejs', {post: foundPost})
-//     })
-// })
+
 
 
 
