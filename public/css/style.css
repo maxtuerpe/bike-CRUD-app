@@ -54,8 +54,15 @@ img {
     border-style: solid;
     border-color: rgb(0, 0, 0);
     margin: 10px;
-    border-radius: 5px;
-    
+     
+}
+
+#post-pic {
+    transition: border-width 0.3s linear; 
+}
+
+#post-pic:hover {
+    border-width: 10px;
 }
 .center {
     display: block;
@@ -94,6 +101,7 @@ h1, h2, h3 {
 }
 .thumbnail{
     background-color: rgba(255, 255, 255, 0.514);
+
 }
 .caption {
     padding: 0;
