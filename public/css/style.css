@@ -87,8 +87,8 @@ h1, h2, h3 {
     align-items: center
 }
 #profile-pic{
-    height: 10em !important;
-    width: 10em !important;
+    height: 10em ;
+    width: 10em ;
     border-style: solid;
     object-fit: cover;
 }
@@ -97,4 +97,17 @@ h1, h2, h3 {
 }
 .caption {
     padding: 0;
+}
+
+.post-head * {
+    display: inline-block
+}
+
+.post-head #profile-pic {
+    height: 3em;
+    width: 3em
+}
+
+#user-name {
+    font-size: 40px
 }
