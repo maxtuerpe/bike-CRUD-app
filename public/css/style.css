@@ -8,6 +8,12 @@
 }
 .title{
     font-family: 'Satisfy', cursive;
+    font-size: 100px;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 .jumbotron p {
     font-size: 20px;
@@ -62,6 +68,11 @@ img {
 h1, h2, h3 {
     color: rgb(245, 179, 12);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
 .btn {
