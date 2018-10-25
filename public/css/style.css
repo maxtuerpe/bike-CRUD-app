@@ -107,6 +107,11 @@ h1, h2, h3 {
     padding: 0;
 }
 
+.new-post {
+    display: block;
+    margin: 0 auto
+}
+
 .post-head * {
     display: inline-block
 }
