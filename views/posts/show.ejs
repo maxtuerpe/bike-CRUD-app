@@ -29,26 +29,28 @@
     <main>
         <h2 align="center"><%=post.caption%></h2>
         <a href="/users/<%=post.user._id%>"><h2>User-<%=post.user.username%></h2></a>
-        <img src="<%=post.img%>" style="width: 50%" class="center"></a>
-
-    
-        
-        <div class="jumbotron center">
-                <div class="container">
-                        <% for(let i = 0; i < post.comments.length; i++){%>
-                            <p><%= post.comments[i].comment%></p>
-                            <p>-<a href="/users/<%=post.comments[i].user._id%>"><%= post.comments[i].user.username%></a></p><br>
-                        <%}%>
-                </div>
-              </div>
-        <form action="/posts/<%=post._id%>" method="POST" id="new-comment">
-            <input type="hidden" name="user" value="<%=userId%>">
+        <div class="post center">
+            <div class="picture center">
+                <img src="<%=post.img%>" style="width: 50%" class="center"></a>
+            </div>
             <small><%=message%></small><br>
-            <input type=textarea placeholder= "Enter Comments Here..." name="comment"></textarea>
-            <input type="submit" value="Post">
+            <div class="comment-box jumbotron center">
+                <div class="container">
+                    <% for(let i = 0; i < post.comments.length; i++){%>
+                        <p><%= post.comments[i].comment%></p>
+                        <p>-<a href="/users/<%=post.comments[i].user._id%>"><%= post.comments[i].user.username%></a></p><br>
+                    <%}%>      
+                </div>
+            </div>
+            <div class="new-comment center">
+                <form action="/posts/<%=post._id%>" method="POST" id="new-comment">
+                    <input type="hidden" name="user" value="<%=userId%>">
+                    <input type=textarea placeholder= "Enter Comments Here..." name="comment"></textarea>
+                    <input id="send" type="submit" value="Send">
+                </form>
+            </div>
+        </div>
         
-
-        </form>
     </main>
 </body>
 </html>
