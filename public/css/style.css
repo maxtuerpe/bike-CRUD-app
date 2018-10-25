@@ -93,21 +93,31 @@ h1, h2, h3 {
     object-fit: cover;
 }
 .thumbnail{
-    background-color: rgba(255, 255, 255, 0.514);
+    background-color: rgba(255, 255, 255, 0.472);
 }
 .caption {
     padding: 0;
+    background-color: white;
+}
+.caption * {
+    color: black;
+    text-shadow: none;
 }
 
 .post-head * {
-    display: inline-block
+    display: inline-block;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .post-head #profile-pic {
     height: 3em;
-    width: 3em
+    width: 3em;
+    
 }
 
-#user-name {
-    font-size: 40px
+#username {
+    font-size: 3em;
+    margin-bottom: .5em;
+    color: rgb(3, 90, 131);
+    text-shadow: none;  
 }
