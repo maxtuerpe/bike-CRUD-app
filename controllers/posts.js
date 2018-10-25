@@ -57,18 +57,38 @@ router.post('/:id', requireLoggin, async (req, res) => {
 
 router.get('/:id/edit', async (req, res) => {
     try {
-        const foundPost = await Post.findById(req.params.id);
+        const foundPost = await Post.findById(req.params.id).populate('user');
         res.render('posts/edit.ejs', {post: foundPost});
     } catch(err) {
         res.send(err);
     }
 });
 
-// router.get('/:id/edit', (req, res) => {
-//     Post.findById(req.params.id, (err, foundPost) => {
-//         res.render('posts/edit.ejs', {post: foundPost})
-//     })
-// })
+router.put('/:id', async (req, res) => {
+    try{
+        const post = await Post.findByIdAndUpdate(req.params.id, req.body);
+        res.redirect(`/posts/${req.params.id}`)
+    } catch(err) {
+        res.send(err);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        for(let i = 0; i < post.comments.length; i++) {
+            await Comment.findByIdAndDelete(posts.comments[i]);
+        } 
+        await post.remove();
+        res.redirect('/posts')
+    } catch(err) {
+        res.send(err);
+    }
+});
+    
+
+
+
 
 
 
