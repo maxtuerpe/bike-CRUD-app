@@ -57,12 +57,19 @@ router.post('/:id', requireLoggin, async (req, res) => {
 
 router.get('/:id/edit', async (req, res) => {
     try {
-        const foundPost = await Post.findById(req.params.id);
+        const foundPost = await Post.findById(req.params.id).populate('user');
         res.render('posts/edit.ejs', {post: foundPost});
     } catch(err) {
         res.send(err);
     }
 });
+
+router.delete('/:id', (req, res) => {
+    Post.findByIdAndDelete(req.params.id, (err, deletedPost)=>{
+        res.redirect('/posts')
+
+    })
+})
 
 // router.get('/:id/edit', (req, res) => {
 //     Post.findById(req.params.id, (err, foundPost) => {
