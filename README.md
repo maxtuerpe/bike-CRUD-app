@@ -2,7 +2,8 @@
 
 
 
-
+![bike-wireframe](images/bike-wireframe.jpg)
+![bike-wireframe2](images/bike-wireframe.jpg)
 
 
 
